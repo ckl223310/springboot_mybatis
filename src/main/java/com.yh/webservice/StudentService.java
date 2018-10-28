@@ -8,9 +8,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 学生信息处理接口
+ */
 @RestController
 @RequestMapping("/student")
-@Api("学生处理类")
+@Api(description = "学生处理类")
 public interface StudentService {
 
     @PostMapping("/add")
@@ -18,5 +21,6 @@ public interface StudentService {
     ResponseManager addStudent(@RequestBody StudentPO studentPO);
 
     @GetMapping("/getStudentByUserId")
+    @ApiOperation("根据学号查询出该学生的信息")
     ResponseManager<Student> getStudentByUserId(@RequestParam("stuId") String stuId);
 }

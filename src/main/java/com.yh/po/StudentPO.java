@@ -7,6 +7,9 @@ import lombok.ToString;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+/**
+ * po 类 前台向后台传输的参数（一般称为VO类）
+ */
 @Setter
 @Getter
 @ToString

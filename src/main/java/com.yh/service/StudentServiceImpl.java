@@ -16,9 +16,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * student 实现类
+ */
 @Service
 public class StudentServiceImpl implements StudentService {
 
+    /**
+     * 日志对象
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentServiceImpl.class);
 
     /**
@@ -28,8 +34,9 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao;
 
     /**
-     * @param studentPO
-     * @return
+     * 新增一个学生
+     * @param studentPO 前台向后台传递的参数对象
+     * @return 返回所需信息
      */
     @Override
     public ResponseManager addStudent(@RequestBody StudentPO studentPO) {
@@ -66,6 +73,11 @@ public class StudentServiceImpl implements StudentService {
         return ResultUtils.success("新增学生成功！");
     }
 
+    /**
+     * 根据学号查询出该学生的信息
+     * @param stuId 学号
+     * @return
+     */
     @Override
     public ResponseManager<Student> getStudentByUserId(@RequestParam("stuId") String stuId) {
 

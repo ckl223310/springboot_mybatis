@@ -1,5 +1,8 @@
 package com.yh.exception;
 
+/**
+ * 异常捕捉
+ */
 public class StudentException extends Exception {
 
     public StudentException() {super();}

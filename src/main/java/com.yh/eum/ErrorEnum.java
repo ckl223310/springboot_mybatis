@@ -1,5 +1,9 @@
 package com.yh.eum;
 
+/**
+ * enum类
+ * 错误编号，及其信息
+ */
 public enum ErrorEnum {
 
     ERROR(-1, "失败"),
