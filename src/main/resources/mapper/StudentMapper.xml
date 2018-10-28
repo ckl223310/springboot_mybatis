@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.me.czh.dao.StudentDao">
+    <resultMap id="stuMap" type="com.me.czh.eo.Student">
+        <result column="stu_id" property="stuId" jdbcType="VARCHAR"/>
+        <result column="stu_name" property="stuName" jdbcType="VARCHAR"/>
+        <result column="birth" property="birth" jdbcType="DATE"/>
+        <result column="sex" property="sex" jdbcType="CHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="stu_sql">
+        stu_id, stu_name, birth, sex, phone, addr, detail
+    </sql>
+
+    <insert id="add" parameterType="com.me.czh.eo.Student">
+        INSERT INTO student(stu_id, stu_name, birth, sex, phone, addr, detail)
+        VALUE (#{stuId}, #{stuName}, #{birth}, #{sex}, #{phone}, #{addr}, #{detail})
+    </insert>
+
+    <select id="getStudentByUserId" parameterType="java.lang.String" resultMap="stuMap">
+        select <include refid="stu_sql"/>
+        from student
+        where 1 = 1
+        and stu_id = #{stuId}
+    </select>
+</mapper>
