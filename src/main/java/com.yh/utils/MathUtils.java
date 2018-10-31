@@ -25,5 +25,4 @@ public class MathUtils {
         return value = (value < 99999 || value >= 10000) ? ++ value : value;
     }
 
-
 }
