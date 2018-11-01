@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yh.dao.ClassesDao">
+    <resultMap id="classesMap" type="com.yh.entity.Classes">
+        <result column="class_id" property="classId" jdbcType="VARCHAR"/>
+        <result column="stu_id" property="stuId" jdbcType="VARCHAR"/>
+        <result column="tea_id" property="teaId" jdbcType="VARCHAR"/>
+        <result column="class_name" property="className" jdbcType="VARCHAR"/>
+        <result column="hours" property="hours" jdbcType="INTEGER"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="class_sql">
+        class_id, stu_id, tea_id, class_name, hours, detail
+    </sql>
+
+    <insert id="add" parameterType="com.yh.entity.Classes">
+        insert into classes(class_id, stu_id, tea_id, class_name, hours, detail)
+        values (#{classId}, #{stuId}, #{teaId}, #{className}, #{hours}, #{detail})
+    </insert>
+</mapper>

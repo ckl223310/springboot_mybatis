@@ -18,7 +18,7 @@ import java.util.Date;
 @ToString
 public class Student implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 4178584042150319421L;
 
     /**
      * 学号
