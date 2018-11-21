@@ -19,4 +19,26 @@
         insert into classes(class_id, stu_id, tea_id, class_name, hours, detail)
         values (#{classId}, #{stuId}, #{teaId}, #{className}, #{hours}, #{detail})
     </insert>
+
+    <select id="queryClasses" resultMap="classesMap">
+        select <include refid="class_sql"/>
+        from classes
+        <where>
+            <if test="classId != null and classId != ''">
+               class_id = #{classId}
+            </if>
+
+            <if test="stuId != null and stuId != ''">
+                and stu_id = #{stuId}
+            </if>
+
+            <if test="teaId != null and teaId != ''">
+                and tea_id = #{teaId}
+            </if>
+
+            <if test="className != null and className != ''">
+                and class_name = #{className}
+            </if>
+        </where>
+    </select>
 </mapper>

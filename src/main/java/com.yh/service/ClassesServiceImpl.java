@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 public class ClassesServiceImpl implements ClassesService {
 
@@ -47,8 +49,23 @@ public class ClassesServiceImpl implements ClassesService {
             classes.setDetail(classesPO.getDetail());
 
             classesDao.add(classesPO);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            return ResultUtils.error(e.getMessage());
+        }
+        return ResultUtils.success("添加课程表成功！");
+    }
 
-            return ResultUtils.success("添加课程表成功！");
+    @Override
+    public ResponseManager queryClasses(Classes classes) {
+
+        if(classes == null) {
+            return ResultUtils.error("传参不能为空！");
+        }
+
+        try {
+            List<Classes> classesList = classesDao.queryClasses(classes);
+            return ResultUtils.success(classesList);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return ResultUtils.error(e.getMessage());
