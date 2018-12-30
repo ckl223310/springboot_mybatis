@@ -48,7 +48,7 @@ public class ClassesServiceImpl implements ClassesService {
             classes.setStuId(stuId);
             classes.setDetail(classesPO.getDetail());
 
-            classesDao.add(classesPO);
+            classesDao.add(classes);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return ResultUtils.error(e.getMessage());

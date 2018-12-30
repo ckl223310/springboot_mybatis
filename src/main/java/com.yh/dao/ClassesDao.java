@@ -16,7 +16,7 @@ public interface ClassesDao {
      * @param classesPO
      * @return
      */
-    int add(ClassesPO classesPO);
+    int add(Classes classes);
 
     /**
      * 返回课程信息
