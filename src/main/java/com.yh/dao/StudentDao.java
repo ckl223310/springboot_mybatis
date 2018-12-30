@@ -25,4 +25,11 @@ public interface StudentDao {
      * @return 返回查询结果
      */
     Student getStudentByUserId(@Param("stuId") String stuId);
+
+    /**
+     * 根据学生Id删除学生信息
+     * @param stuId
+     * @return
+     */
+    int delByStuId(@Param("stuId") String stuId);
 }

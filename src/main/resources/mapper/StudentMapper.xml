@@ -16,6 +16,10 @@
         stu_id, stu_name, birth, sex, phone, addr, detail
     </sql>
 
+    <sql id="tableName">
+        student
+    </sql>
+
     <insert id="add" parameterType="com.yh.entity.Student">
         INSERT INTO student(stu_id, stu_name, birth, sex, phone, addr, detail)
         VALUE (#{stuId}, #{stuName}, #{birth}, #{sex}, #{phone}, #{addr}, #{detail})
@@ -24,7 +28,11 @@
     <select id="getStudentByUserId" parameterType="java.lang.String" resultMap="stuMap">
         select <include refid="stu_sql"/>
         from student
-        where 1 = 1
-        and stu_id = #{stuId}
+        where stu_id = #{stuId}
     </select>
+
+    <delete id="delByStuId" parameterType="java.lang.String">
+        delete from <include refid="tableName"/>
+        where stu_id = #{stuId}
+    </delete>
 </mapper>

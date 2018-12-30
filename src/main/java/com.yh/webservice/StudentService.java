@@ -23,4 +23,8 @@ public interface StudentService {
     @GetMapping("/getStudentByUserId")
     @ApiOperation("根据学号查询出该学生的信息")
     ResponseManager<Student> getStudentByUserId(@RequestParam("stuId") String stuId);
+
+    @GetMapping("/del")
+    @ApiOperation("删除学生")
+    ResponseManager delStudent(@RequestParam("stuId") String stuId);
 }

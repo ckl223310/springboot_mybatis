@@ -1,5 +1,6 @@
 package com.yh.service;
 
+import com.yh.dao.ClassesDao;
 import com.yh.dao.StudentDao;
 import com.yh.entity.Student;
 import com.yh.eum.ErrorEnum;
@@ -13,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,7 +36,14 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao;
 
     /**
+     * classesDao
+     */
+    @Autowired
+    private ClassesDao classesDao;
+
+    /**
      * 新增一个学生
+     *
      * @param studentPO 前台向后台传递的参数对象
      * @return 返回所需信息
      */
@@ -47,7 +56,7 @@ public class StudentServiceImpl implements StudentService {
         }
 
         String phone = studentPO.getPhone();
-        if(!StringBaseUtils.isPhone(phone)) {
+        if (!StringBaseUtils.isPhone(phone)) {
             LOGGER.error(ErrorEnum.NOT_PHONE.getMsg());
             return ResultUtils.error(ErrorEnum.NOT_PHONE.getCode(),
                     ErrorEnum.NOT_PHONE.getMsg());
@@ -75,13 +84,14 @@ public class StudentServiceImpl implements StudentService {
 
     /**
      * 根据学号查询出该学生的信息
+     *
      * @param stuId 学号
      * @return
      */
     @Override
     public ResponseManager<Student> getStudentByUserId(@RequestParam("stuId") String stuId) {
 
-        if(StringUtils.isEmpty(stuId)) {
+        if (StringUtils.isEmpty(stuId)) {
             LOGGER.error(ErrorEnum.NOT_VALUE_ERROR.getMsg());
             return ResultUtils.error(ErrorEnum.NOT_VALUE_ERROR.getCode(), ErrorEnum.NOT_VALUE_ERROR.getMsg());
         }
@@ -96,5 +106,38 @@ public class StudentServiceImpl implements StudentService {
         }
         System.out.println(student.toString());
         return ResultUtils.success(student);
+    }
+
+    /**
+     * 删除学生
+     *
+     * @param stuId 学生Id
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResponseManager delStudent(@RequestParam("stuId") String stuId) {
+
+        if (StringUtils.isEmpty(stuId)) {
+            return ResultUtils.error(ErrorEnum.NOT_VALUE_ERROR.getMsg());
+        }
+
+        try {
+
+            int count = studentDao.delByStuId(stuId);
+            if (count <= 0) {
+                return ResultUtils.error("删除学生信息失败");
+            }
+
+            count = classesDao.delByStuId(stuId);
+            if (count <= 0) {
+                return ResultUtils.error("删除学生课程信息失败");
+            }
+
+            return ResultUtils.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtils.error(e.getMessage());
+        }
     }
 }

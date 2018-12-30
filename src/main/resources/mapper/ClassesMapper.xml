@@ -15,6 +15,10 @@
         class_id, stu_id, tea_id, class_name, hours, detail
     </sql>
 
+    <sql id="tableName">
+        classes
+    </sql>
+
     <insert id="add" parameterType="com.yh.entity.Classes">
         insert into classes(class_id, stu_id, tea_id, class_name, hours, detail)
         values (#{classId}, #{stuId}, #{teaId}, #{className}, #{hours}, #{detail})
@@ -41,4 +45,9 @@
             </if>
         </where>
     </select>
+
+    <delete id="delByStuId" parameterType="java.lang.String">
+        delete from <include refid="tableName"/>
+        where stu_id = #{stuId}
+    </delete>
 </mapper>

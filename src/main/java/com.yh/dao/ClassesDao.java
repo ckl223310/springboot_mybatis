@@ -3,6 +3,7 @@ package com.yh.dao;
 import com.yh.entity.Classes;
 import com.yh.po.ClassesPO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,4 +25,11 @@ public interface ClassesDao {
      * @return
      */
     List<Classes> queryClasses(Classes classes);
+
+    /**
+     * 根据学生Id删除学生课程信息
+     * @param stuId
+     * @return
+     */
+    int delByStuId(@Param("stuId") String stuId);
 }
