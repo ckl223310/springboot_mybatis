@@ -13,3 +13,8 @@ spring:
 #Mybatis config
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
+
+#打印sql语句记录
+logging:
+  level:
+    com.yh.dao: debug
