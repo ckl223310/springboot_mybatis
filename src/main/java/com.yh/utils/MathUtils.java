@@ -24,5 +24,4 @@ public class MathUtils {
     private static Long scoreFive(Long value) {
         return value = (value < 99999 || value >= 10000) ? ++ value : value;
     }
-
 }

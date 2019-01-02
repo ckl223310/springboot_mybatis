@@ -8,7 +8,9 @@ spring:
     url: jdbc:mysql://39.106.40.119:3306/four?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
-
+  activiti:
+    database-schema: true
+    history-level: full
 
 #Mybatis config
 mybatis:
