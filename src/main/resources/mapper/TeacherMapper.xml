@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yh.dao.TeacherDao">
+    <resultMap id="stuMap" type="com.yh.entity.Teacher">
+        <result column="tea_id" property="teaId" jdbcType="VARCHAR"/>
+        <result column="tea_name" property="teaName" jdbcType="VARCHAR"/>
+        <result column="birth" property="birth" jdbcType="DATE"/>
+        <result column="sex" property="sex" jdbcType="CHAR"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="stu_sql">
+        tea_id, tea_name, birth, sex, detail
+    </sql>
+
+    <sql id="tableName">
+        teacher
+    </sql>
+
+    <insert id="add" parameterType="com.yh.entity.Student">
+        INSERT INTO teacher(tea_id, tea_name, birth, sex, detail)
+        VALUE (#{teaId}, #{teaName}, #{birth}, #{sex}, #{detail})
+    </insert>
+
+    <delete id="delById" parameterType="java.lang.String">
+        delete from <include refid="tableName"/>
+        where tea_id = #{teaId}
+    </delete>
+</mapper>
