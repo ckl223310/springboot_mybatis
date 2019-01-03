@@ -28,4 +28,10 @@ public interface StudentActivitiService {
     public List<Map<String, Object>> getConfirm(@RequestParam("userId") String userId,
                                                 @RequestParam("page") Integer page,
                                                 @RequestParam("pageSize") Integer pageSize);
+
+
+    @GetMapping("/confirmTask")
+    @ApiOperation("审批请假")
+    public void confirmTask(@RequestParam("taskId") String taskId,
+                            @RequestParam("userId") Boolean isConfirm);
 }

@@ -9,8 +9,12 @@
     <exclusiveGateway gatewayDirection="Unspecified" id="_5" name="ExclusiveGateway"/>
     <sequenceFlow id="_8" sourceRef="_4" targetRef="_5"/>
     <endEvent id="_9" name="EndEvent"/>
-    <sequenceFlow id="_10" sourceRef="_5" targetRef="_9"/>
-    <sequenceFlow id="_11" sourceRef="_5" targetRef="_3"/>
+    <sequenceFlow id="_10" sourceRef="_5" targetRef="_9">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isTrue}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_11" sourceRef="_5" targetRef="_3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isTrue}]]></conditionExpression>
+    </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram documentation="background=#FFFFFF;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
     <bpmndi:BPMNPlane bpmnElement="myProcess_1">

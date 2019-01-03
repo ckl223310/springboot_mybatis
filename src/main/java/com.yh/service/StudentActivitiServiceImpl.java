@@ -82,7 +82,10 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
                                                 @RequestParam("page") Integer page,
                                                 @RequestParam("pageSize") Integer pageSize) {
 
-        List<Task> taskList = taskService.createTaskQuery().taskDefinitionKey("myProcess_1").taskAssignee(userId).listPage(page, pageSize);
+        page = page == null ? 0 : page - 1;
+        pageSize = pageSize == null? 10 : pageSize;
+
+        List<Task> taskList = taskService.createTaskQuery().processDefinitionKey("myProcess_1").taskAssignee(userId).listPage(page, pageSize);
 
         List<Map<String, Object>> mapList = new ArrayList<>();
         if (taskList == null || taskList.size() == 0) {
@@ -91,10 +94,21 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
 
         for (Task task : taskList) {
             Map<String, Object> map = taskService.getVariables(task.getId());
+            map.put("taskId", task.getId());
             mapList.add(map);
         }
 
+
         return mapList;
+    }
+
+    @Override
+    public void confirmTask(@RequestParam("taskId") String taskId,
+                            @RequestParam("userId") Boolean isConfirm) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("isTrue", isConfirm);
+        taskService.complete(taskId, map);
     }
 
 
