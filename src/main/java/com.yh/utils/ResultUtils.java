@@ -5,7 +5,8 @@ import com.yh.exception.ResponseManager;
 
 public class ResultUtils {
 
-    private ResultUtils() {}
+    private ResultUtils() {
+    }
 
     public static <T> ResponseManager<T> success(int code, T data, String msg) {
         ResponseManager<T> responseManager = new ResponseManager<T>();
@@ -19,7 +20,7 @@ public class ResultUtils {
     }
 
     public static <T> ResponseManager<T> success(T data) {
-       return success(0, data, "成功");
+        return success(0, data, "成功");
     }
 
     public static <T> ResponseManager<T> success(String msg) {
@@ -27,7 +28,7 @@ public class ResultUtils {
     }
 
     public static <T> ResponseManager<T> success() {
-       return success(0, null, "成功");
+        return success(0, null, "成功");
     }
 
     public static <T> ResponseManager<T> error(int code, T data, String msg) {
@@ -41,7 +42,7 @@ public class ResultUtils {
     }
 
     public static <T> ResponseManager<T> error(int code, String msg) {
-       return error(code, null, msg);
+        return error(code, null, msg);
     }
 
     public static <T> ResponseManager<T> error(int code) {

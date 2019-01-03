@@ -1,13 +1,15 @@
 package com.yh.dao;
 
 import com.yh.entity.Classes;
-import com.yh.po.ClassesPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * 课程dao
+ */
 @Component
 @Mapper
 public interface ClassesDao {

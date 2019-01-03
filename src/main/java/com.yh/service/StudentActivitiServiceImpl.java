@@ -79,9 +79,10 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
                                                 @RequestParam("pageSize") Integer pageSize) {
 
         page = page == null ? 0 : page - 1;
-        pageSize = pageSize == null? 10 : pageSize;
+        pageSize = pageSize == null ? 10 : pageSize;
 
-        List<Task> taskList = taskService.createTaskQuery().processDefinitionKey("myProcess_1").taskAssignee(userId).listPage(page, pageSize);
+        List<Task> taskList = taskService.createTaskQuery()
+                .processDefinitionKey("myProcess_1").taskAssignee(userId).listPage(page, pageSize);
 
         List<Map<String, Object>> mapList = new ArrayList<>();
         if (taskList == null || taskList.isEmpty()) {

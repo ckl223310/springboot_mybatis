@@ -7,10 +7,13 @@ import lombok.ToString;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+/**
+ * 课程类
+ */
 @Getter
 @Setter
 @ToString
-public class Classes implements Serializable{
+public class Classes implements Serializable {
 
     private static final long serialVersionUID = 6797131259803190638L;
 

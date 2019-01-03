@@ -15,9 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
+/**
+ * 课程service
+ */
 @Service
 public class ClassesServiceImpl implements ClassesService {
 
+    /**
+     * 日志
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ClassesServiceImpl.class);
 
     /**
@@ -28,6 +34,7 @@ public class ClassesServiceImpl implements ClassesService {
 
     /**
      * 添加课程表
+     *
      * @param classesPO
      * @return
      */
@@ -59,7 +66,7 @@ public class ClassesServiceImpl implements ClassesService {
     @Override
     public ResponseManager queryClasses(Classes classes) {
 
-        if(classes == null) {
+        if (classes == null) {
             return ResultUtils.error("传参不能为空！");
         }
 

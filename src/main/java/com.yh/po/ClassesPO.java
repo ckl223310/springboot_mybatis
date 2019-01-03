@@ -3,10 +3,12 @@ package com.yh.po;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * 课程PO
+ */
 @Getter
 @Setter
 @ToString
