@@ -11,8 +11,12 @@ import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -66,6 +70,32 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
         System.out.println(task.getId());
 
         map.put("teaId", stuLeaveInfoVO.getTeaId());
-        taskService.complete(task.getId());
+        taskService.complete(task.getId(), map);
     }
+
+    /**
+     * 获取审批流程
+     * @param userId
+     */
+    @Override
+    public List<Map<String, Object>> getConfirm(@RequestParam("userId") String userId,
+                                                @RequestParam("page") Integer page,
+                                                @RequestParam("pageSize") Integer pageSize) {
+
+        List<Task> taskList = taskService.createTaskQuery().taskDefinitionKey("myProcess_1").taskAssignee(userId).listPage(page, pageSize);
+
+        List<Map<String, Object>> mapList = new ArrayList<>();
+        if (taskList == null || taskList.size() == 0) {
+            return mapList;
+        }
+
+        for (Task task : taskList) {
+            Map<String, Object> map = taskService.getVariables(task.getId());
+            mapList.add(map);
+        }
+
+        return mapList;
+    }
+
+
 }
