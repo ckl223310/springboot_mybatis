@@ -9,6 +9,8 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +19,7 @@ import java.util.Map;
  * @author czh
  * date 2019-01-03
  */
+@Service
 public class StudentActivitiServiceImpl implements StudentActivitiService {
 
     /**
@@ -47,7 +50,7 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
      * 启动流程
      */
     @Override
-    public void startProcess(StuLeaveInfoVO stuLeaveInfoVO) {
+    public void startProcess(@RequestBody StuLeaveInfoVO stuLeaveInfoVO) {
 
 
         Map<String, Object> map = new HashMap<>();
@@ -56,6 +59,13 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
         map.put("stuId", stuLeaveInfoVO.getStuId());
 
         //开启流程
-        ProcessInstance processInstance = runtimeService.startProcessInstanceById("myProcess_1", map);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("myProcess_1", map);
+        System.out.println(processInstance.getId());
+
+        Task task = taskService.createTaskQuery().taskAssignee(stuLeaveInfoVO.getStuId()).singleResult();
+        System.out.println(task.getId());
+
+        map.put("teaId", stuLeaveInfoVO.getTeaId());
+        taskService.complete(task.getId());
     }
 }

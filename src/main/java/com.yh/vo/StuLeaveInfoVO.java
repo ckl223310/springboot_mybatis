@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * 学生请假信息
  * @author czh
@@ -12,13 +14,18 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class StuLeaveInfoVO {
+public class StuLeaveInfoVO implements Serializable {
 
 
     /**
      * 学生Id
      */
     private String stuId;
+
+    /**
+     * 老师ID
+     */
+    private String teaId;
 
     /**
      * 请假学生姓名
