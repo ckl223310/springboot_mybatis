@@ -1,11 +1,17 @@
 package com.yh.service;
 
+import com.yh.vo.StuLeaveInfoVO;
 import com.yh.webservice.StudentActivitiService;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author czh
@@ -37,11 +43,19 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
     @Autowired
     private TaskService taskService;
 
+    /**
+     * 启动流程
+     */
     @Override
-    public void startProcess() {
+    public void startProcess(StuLeaveInfoVO stuLeaveInfoVO) {
 
 
-        runtimeService.startProcessInstanceById("");
+        Map<String, Object> map = new HashMap<>();
 
+        map.put(stuLeaveInfoVO.getStuId(), stuLeaveInfoVO);
+        map.put("stuId", stuLeaveInfoVO.getStuId());
+
+        //开启流程
+        ProcessInstance processInstance = runtimeService.startProcessInstanceById("myProcess_1", map);
     }
 }
