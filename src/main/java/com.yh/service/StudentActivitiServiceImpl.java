@@ -6,7 +6,6 @@ import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
-import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,11 +61,9 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
         map.put("stuId", stuLeaveInfoVO.getStuId());
 
         //开启流程
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("myProcess_1", map);
-        System.out.println(processInstance.getId());
+        runtimeService.startProcessInstanceByKey("myProcess_1", map);
 
         Task task = taskService.createTaskQuery().taskAssignee(stuLeaveInfoVO.getStuId()).singleResult();
-        System.out.println(task.getId());
 
         map.put("teaId", stuLeaveInfoVO.getTeaId());
         taskService.complete(task.getId(), map);
@@ -88,7 +84,7 @@ public class StudentActivitiServiceImpl implements StudentActivitiService {
         List<Task> taskList = taskService.createTaskQuery().processDefinitionKey("myProcess_1").taskAssignee(userId).listPage(page, pageSize);
 
         List<Map<String, Object>> mapList = new ArrayList<>();
-        if (taskList == null || taskList.size() == 0) {
+        if (taskList == null || taskList.isEmpty()) {
             return mapList;
         }
 
