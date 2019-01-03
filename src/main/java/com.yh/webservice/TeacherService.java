@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 public interface TeacherService {
 
     @PostMapping("/add")
-    @ApiOperation("添加学生")
+    @ApiOperation("添加老师")
     ResponseManager addTeacher(@RequestBody TeacherPO teacherPO);
 
     @GetMapping("/del")
-    @ApiOperation("删除学生")
+    @ApiOperation("删除老师")
     ResponseManager delById(@RequestParam("teaId") String teaId);
 }

@@ -12,12 +12,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
  * @author czh
  * @date 2019-01-03
  */
+@Service
 public class TeacherServiceImpl implements TeacherService {
 
     /**
@@ -34,7 +38,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
-    public ResponseManager addTeacher(TeacherPO teacherPO) {
+    public ResponseManager addTeacher(@RequestBody TeacherPO teacherPO) {
 
         if (teacherPO == null) {
             LOGGER.error(ErrorEnum.NOT_VALUE_ERROR.getMsg());
@@ -48,7 +52,9 @@ public class TeacherServiceImpl implements TeacherService {
             return ResultUtils.error("名称不能为空");
         }
 
+        char sex = teacherPO.getSex();
 
+        sex = StringUtils.equals(sex + "", "男") ? '男' : '女';
 
         try {
             Teacher teacher = new Teacher();
@@ -56,7 +62,7 @@ public class TeacherServiceImpl implements TeacherService {
             teacher.setTeaName(teaName);
             teacher.setBirth(teacherPO.getBirth());
             teacher.setDetail(teacherPO.getDetail());
-            teacher.setSex(teacherPO.getSex());
+            teacher.setSex(sex);
             teacherDao.add(teacher);
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +74,23 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
-    public ResponseManager delById(String teaId) {
-        return null;
+    public ResponseManager delById(@RequestParam("teaId") String teaId) {
+
+        if (StringUtils.isEmpty(teaId)) {
+            return ResultUtils.error(ErrorEnum.NOT_VALUE_ERROR.getMsg());
+        }
+
+        try {
+
+            int count = teacherDao.delById(teaId);
+            if (count <= 0) {
+                return ResultUtils.error("删除老师信息失败");
+            }
+
+            return ResultUtils.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtils.error(e.getMessage());
+        }
     }
 }
