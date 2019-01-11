@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 学生请假信息
  * @author czh
- * @date 2019-01-03
+ * date 2019-01-03
  */
 @Setter
 @Getter

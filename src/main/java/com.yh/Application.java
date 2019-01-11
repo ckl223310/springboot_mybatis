@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
     /**
-     * 启动方面
+     * main
      * @param args
      */
     public static void main(String[] args) {

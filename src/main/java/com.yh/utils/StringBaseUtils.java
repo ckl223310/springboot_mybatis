@@ -6,31 +6,46 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.UUID;
 
+/**
+ * 工具类
+ */
 public class StringBaseUtils {
 
-    private StringBaseUtils() {}
-
-    public static String getId() {
-       return UUID.randomUUID().toString().replaceAll("-", "");
+    private StringBaseUtils() {
     }
 
+    public static String getId() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    /**
+     * 判断是否为电话号码
+     * @param phone
+     * @return
+     */
     public static boolean isPhone(String phone) {
 
-        if(StringUtils.isEmpty(phone) || phone.length() != 11) {
+        if (StringUtils.isEmpty(phone) || phone.length() != 11) {
             return false;
         }
 
         for (int i = 0; i < phone.length(); i++) {
             char ph = phone.charAt(i);
-            if(ph < 48 || ph > 57) {
+            if (ph < 48 || ph > 57) {
                 return false;
             }
         }
         return true;
     }
 
+    /**
+     * 获取学生ID
+     * @param lastId
+     * @return
+     * @throws StudentException
+     */
     public static String getStuId(String lastId) throws StudentException {
-        if(StringUtils.isEmpty(lastId) && lastId.length() != 8) {
+        if (StringUtils.isEmpty(lastId) && lastId.length() != 8) {
             throw new StudentException("学生ID出现异常！");
         }
 
@@ -39,7 +54,7 @@ public class StringBaseUtils {
 
         Integer lastInt = Integer.parseInt(last);
 
-        if(lastInt.equals(9999)) {
+        if (lastInt.equals(9999)) {
             throw new StudentException("学生ID已达最大值！");
         }
 

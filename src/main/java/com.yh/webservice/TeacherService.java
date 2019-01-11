@@ -1,10 +1,7 @@
 package com.yh.webservice;
 
 
-import com.yh.entity.Student;
-import com.yh.entity.Teacher;
 import com.yh.exception.ResponseManager;
-import com.yh.po.StudentPO;
 import com.yh.po.TeacherPO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,10 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(description = "老师处理类")
 public interface TeacherService {
 
+    /**
+     * 添加老师
+     * @param teacherPO
+     * @return
+     */
     @PostMapping("/add")
     @ApiOperation("添加老师")
     ResponseManager addTeacher(@RequestBody TeacherPO teacherPO);
 
+    /**
+     * 删除老师
+     * @param teaId
+     * @return
+     */
     @GetMapping("/del")
     @ApiOperation("删除老师")
     ResponseManager delById(@RequestParam("teaId") String teaId);
