@@ -6,10 +6,19 @@ package com.yh.eum;
  */
 public enum ErrorEnum {
 
+    /**
+     * 失败
+     */
     ERROR(-1, "失败"),
 
+    /**
+     * 传参不能为空
+     */
     NOT_VALUE_ERROR(-2, "传参不能为空"),
 
+    /**
+     * 该手机号码格式不正确
+     */
     NOT_PHONE(-3, "该手机号码格式不正确！");
 
     ErrorEnum(int code, String msg) {
@@ -17,8 +26,14 @@ public enum ErrorEnum {
         this.msg = msg;
     }
 
+    /**
+     * code
+     */
     private int code;
 
+    /**
+     * 信息
+     */
     private String msg;
 
     public int getCode() {

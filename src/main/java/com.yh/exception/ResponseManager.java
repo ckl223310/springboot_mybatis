@@ -13,9 +13,18 @@ import lombok.ToString;
 @ToString
 public class ResponseManager<T> {
 
+    /**
+     * 返回码
+     */
     private int code;
 
+    /**
+     * 返回数据
+     */
     private T date;
 
+    /**
+     * 返回消息
+     */
     private String msg;
 }

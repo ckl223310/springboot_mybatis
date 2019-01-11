@@ -15,15 +15,27 @@ import java.util.Date;
 @ToString
 public class TeacherPO {
 
+    /**
+     * 教师名称
+     */
     @NotNull
     private String teaName;
 
+    /**
+     * 生日
+     */
     @NotNull
     private Date birth;
 
+    /**
+     * 性别
+     */
     @NotNull
     private char sex;
 
+    /**
+     * 详情
+     */
     @NotNull
     private String detail;
 }

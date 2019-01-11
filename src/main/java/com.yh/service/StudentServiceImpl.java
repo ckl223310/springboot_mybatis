@@ -104,7 +104,6 @@ public class StudentServiceImpl implements StudentService {
             LOGGER.error(e.getMessage());
             return ResultUtils.error(e.getMessage());
         }
-        System.out.println(student.toString());
         return ResultUtils.success(student);
     }
 
