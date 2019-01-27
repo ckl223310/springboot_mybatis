@@ -20,3 +20,6 @@ mybatis:
 logging:
   level:
     com.yh.dao: debug
+
+banner:
+  charset: UTF-8
