@@ -11,6 +11,9 @@ spring:
   activiti:
     database-schema: true
     history-level: full
+  http:
+    encoding:
+      force: true
 
 #Mybatis config
 mybatis:
@@ -20,6 +23,10 @@ mybatis:
 logging:
   level:
     com.yh.dao: debug
+  path: F:\home\temp_djp
+  pattern:
+    console: '%d{YYYY-MM-DD HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+
 
 banner:
   charset: UTF-8
