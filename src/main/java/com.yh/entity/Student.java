@@ -30,6 +30,13 @@ public class Student implements Serializable {
      */
     private String stuName;
 
+    public Student() {
+    }
+
+    public Student(String stuName) {
+        this.stuName = stuName;
+    }
+
     /**
      * 出生日期
      */
